@@ -58,7 +58,6 @@ def get_all_shows():
     if "minEpisodes" in request.args:
         for i in range(len(show)-1, -1, -1):
             if show[i]["episodes_seen"] >= int(request.args.get("minEpisodes")):
-                #show.remove(show[i])
                 temp.append(show[i])
     return create_response({"shows": temp})
 
@@ -75,9 +74,19 @@ def get_id_shows(id):
         return create_response(status=404, message="No show with this id exists")
     return create_response({"shows": db.getById('shows', int(id))})
 
+@app.route("/shows", methods=["POST"])
+def add_shows():
+    req_data = request.get_json()
+    if 'name' in req_data and 'episodes_seen' in req_data:
+        return create_response(data = db.create('shows', request.get_json()), status=201, message="")
+    if 'name' in req_data:
+        return create_response(status=422, message="No episodes_seen included in new show")
+    if 'episodes_seen' in req_data:
+        return create_response(status=422, message="No name included in new show")
+    return create_response(status=422, message="No name and episodes_seen included in new show")
+
+
 # TODO: Implement the rest of the API here!
-
-
 
 
 """
