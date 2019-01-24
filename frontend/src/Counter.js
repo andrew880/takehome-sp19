@@ -1,10 +1,27 @@
 import React, { Component } from 'react'
-
+import ReactDOM from 'react-dom'
 class Counter extends Component {
   // YOUR CODE GOES BELOW
-  count = 0
+  constructor(props) {
+    super(props);
+  }
+  state = {count : 0};
+  handleClickInc = () => {
+    this.setState(({count}) => ({count: count + 1}));
+  };
+  handleClickDec = () => {
+    this.setState(({count}) => ({count: count - 1}));
+  };
   render() {
-    return <button onClick = {this.handleClick}> clickMe </button>		
+    return (
+      <div>
+        <h2>
+          count = {this.state.count}
+        </h2>
+        <button onClick = {this.handleClickInc}> increase </button>
+        <button onClick = {this.handleClickDec}> decrease </button>
+     </div>
+    )
   }
 }
   function count() {
@@ -16,8 +33,4 @@ class Counter extends Component {
       </div>
     )
   }
-  const element = <count />
-//  ReactDOM.render(
-  //  element, document.getElementById('root'))
-
 export default Counter
