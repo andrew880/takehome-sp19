@@ -62,6 +62,10 @@ def delete_show(id):
     db.deleteById('shows', int(id))
     return create_response(message="Show deleted")
 
+@app.route("/shows/<id>", methods=['GET'])
+def get_id_show():
+    return create_response({"shows": db.get('shows')})
+
 
 # TODO: Implement the rest of the API here!
 
