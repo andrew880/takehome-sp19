@@ -78,13 +78,20 @@ def get_id_shows(id):
 def add_shows():
     req_data = request.get_json()
     if 'name' in req_data and 'episodes_seen' in req_data:
-        return create_response(data = db.create('shows', request.get_json()), status=201, message="")
+        return create_response(data = db.create('shows', req_data), status=201, message=" ")
     if 'name' in req_data:
         return create_response(status=422, message="No episodes_seen included in new show")
     if 'episodes_seen' in req_data:
         return create_response(status=422, message="No name included in new show")
     return create_response(status=422, message="No name and episodes_seen included in new show")
 
+@app.route("/shows/<id>", methods=["PUT"])
+def edit_shows(id):
+    if db.getById('shows', int(id)) is None:
+        return create_response(status=404, message="No show with this id exists")
+    if 'name' in request.get_json() and 'episodes_seen' in request.get_json():
+        return create_response({"shows": db.updateById('shows', int(id), request.get_json())})
+    return create_response({"shows": db.getById('shows', int(id))})
 
 # TODO: Implement the rest of the API here!
 
