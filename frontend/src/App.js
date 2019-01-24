@@ -13,11 +13,10 @@ class App extends Component {
       ]
     }
   }
-
   render() {
     return (
       <div className="App">
-        <Instructions />
+        <Instructions complete="False" />
         {this.state.shows.map(x => (
           <Show id={x.id} name={x.name} episodes_seen={x.episodes_seen} />
         ))}
@@ -25,5 +24,4 @@ class App extends Component {
     )
   }
 }
-
 export default App

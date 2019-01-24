@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-
+import App from './App'
 class Instructions extends Component {
   render() {
     return (
       <div>
         <p>
+          complete
           Pass a 'complete' prop to the instructions component in <code>src/App.js</code>. See the README for more details. If you are successful, you'll see another line below saying you've completed this part.
         </p>
         <br />
