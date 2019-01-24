@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Instructions from './Instructions'
 import Show from './Show'
+import Counter from './Counter'
 
 class App extends Component {
   constructor(props) {
@@ -15,11 +16,16 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
+      <div ClassName = "App">
         <Instructions complete="False" />
         {this.state.shows.map(x => (
           <Show id={x.id} name={x.name} episodes_seen={x.episodes_seen} />
         ))}
+
+        {this.state.shows[0].name} : <Counter count = {this.state.shows[0].episodes_seen}/>
+        {this.state.shows[1].name} : <Counter count = {this.state.shows[1].episodes_seen}/>
+        {this.state.shows[2].name} : <Counter count = {this.state.shows[2].episodes_seen}/>
+	
       </div>
     )
   }
