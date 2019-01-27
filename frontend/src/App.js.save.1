@@ -1,0 +1,33 @@
+import React, { Component } from 'react'
+import Instructions from './Instructions'
+import Show from './Show'
+import Counter from './Counter'
+
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      shows: [
+        {id: 1, name: "Game of Thrones", episodes_seen: 0},
+        {id: 2, name: "Naruto", episodes_seen: 220},
+        {id: 3, name: "Black Mirror", episodes_seen: 3},
+      ]
+    }
+  }
+  render() {
+    return (
+      <div ClassName = "App">
+        <Instructions complete="False" />
+        <p>{this.state.shows.map(x => (
+          <Show id={x.id} name={x.name} Counter. />
+        ))}</p>
+        let children = []
+	for (let i = 0; i < this.state.shows; i++) {
+          children.push(<td>{this.state.shows[0].name}</td>)
+        }
+	children
+      </div>
+    )
+  }
+}
+export default App
