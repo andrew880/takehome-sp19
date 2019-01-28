@@ -3,7 +3,6 @@ import Instructions from './Instructions'
 import Show from './Show'
 import Counter from './Counter'
 
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -16,15 +15,17 @@ class App extends Component {
     }
   }
   handleAddText = () => {
-    const temp = <Counter count = {0}/>
     this.setState(({text}) => ({text: text + "  " + this.state.input + ":0 "}));
     this.state.shows.push({id: this.state.shows.length + 1, name: this.state.input, episodes_seen: 0});
 
   };
 
   handleChange = (event) => {
-    const {name, type, value} = event.nativeEvent
     this.state.input = event.target.value
+  }
+
+  episodesIncre = (episodes_seen) => {
+    episodes_seen++;
   }
 
   render() {
@@ -32,8 +33,9 @@ class App extends Component {
       <div className="App">
         <Instructions complete="False" />
         {this.state.shows.map(x => 
-          <Show id={x.id} name={x.name} episodes_seen={x.episodes_seen} counter={<Counter count = {x.episodes_seen}/>}/>
+          <Show id={x.id} name={x.name} episodes_seen={x.episodes_seen} counter={<Counter count = {x.episodes_seen}/>} />
         )}
+
 
         <input type="text" name="Shows" onChange={this.handleChange}/>
         <button onClick = {this.handleAddText}> add shows </button>
@@ -41,4 +43,5 @@ class App extends Component {
     )
   }
 }
+
 export default App
